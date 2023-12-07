@@ -1,0 +1,15 @@
+PARSING
+
+	Correct formats
+		file1 cmd
+		file1 cmd file2
+		here_doc LIM cmd file2
+		file1 cmd1 cmd2 [cmdn] file2
+		here_doc LIM cmd1 cmd2 [cmdn] file2
+		file1 cmd1 cmd2 [cmdn] file2 -a
+	Incorrect formats
+		file1 cmd -a
+
+
+ISSUES
+	For bonus part, -a flag is not required when here_doc is given.
