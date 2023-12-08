@@ -6,7 +6,7 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:47:14 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/07 18:27:54 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/08 14:39:10 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int		pipex_clear(t_pipex *pipex, int error);
 /* -------------------------------------------------------------------------- */
 
 int		error(char *error_msg, int error);
+int		error_path(char *msg, char *path);
 int		error_input(int error);
 int		error_alloc(void);
 
@@ -63,7 +64,16 @@ t_pipex	*parse_input(int argc, char **argv, char **env);
 
 /* -------------------------------- COMMANDS -------------------------------- */
 
-char	**build_command(char *input);
+char	**command_build(char *input, char **env);
+char	*command_find_path(char *command, char **env);
 void	*commands_free(char ***commands);
+
+/* ------------------------------- PATH CHECK ------------------------------- */
+
+bool	command_is_path(char *command);
+bool	path_exist(char *path, bool printerr);
+bool	path_is_exec(char *path, bool printerr);
+bool	check_file_access(char *file_in, char *file_out);
+
 
 #endif

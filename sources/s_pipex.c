@@ -6,7 +6,7 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:15:18 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/07 18:06:51 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/08 11:21:03 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	pipex_clear(t_pipex *pipex, int error)
 	if (!pipex)
 		return (0);
 	if (pipex->commands)
-		ft_free_strings(pipex->commands);
+		ft_free_strss(pipex->commands);
 	if (pipex->file_in)
 		free(pipex->file_in);
 	if (pipex->file_out)

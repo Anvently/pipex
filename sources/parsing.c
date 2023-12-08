@@ -6,24 +6,25 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:46:33 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/07 18:26:59 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/08 15:00:13 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 
-static char	***parse_commands(int size, char **argv)
+static char	***parse_commands(int size, char **argv, char **env)
 {
 	char	***commands;
 	int		i;
 
-	commands = malloc(sizeof(char **) * size);
+	commands = malloc(sizeof(char **) * (size + 1));
 	if (!commands)
 		return (NULL);
+	commands[size] = NULL;
 	i = 0;
 	while (i < size)
 	{
-		commands[i] = build_command(argv[i]);
+		commands[i] = command_build(argv[i], env);
 		if (!commands[i])
 			return (commands_free(commands));
 		i++;
@@ -54,18 +55,18 @@ static char	**parse_file_in(int *size, char **args, t_pipex *pipex)
 
 static void	parse_file_out(int *size, char **args, t_pipex *pipex)
 {
-	if (*size == 1)
-		return ;
 	if (!ft_strcmp(args[*size - 1], "-a"))
 	{
-		if (*size == 2)
+		if (*size < 3)
 			exit(error_input(pipex_clear(pipex, 2)));
 		pipex->flag_a = true;
 		pipex->file_out = ft_strdup(args[*size - 2]);
-		size--;
+		*size -= 2;
 	}
+	else if (*size == 1)
+		return ;
 	else
-		pipex->file_out = ft_strdup(args[*size - 1]);
+		pipex->file_out = ft_strdup(args[--(*size)]);
 	if (!pipex->file_out)
 		exit(error_input(pipex_clear(pipex, -1)));
 }
@@ -74,7 +75,9 @@ static void	parse_args(int size, char **args, t_pipex *pipex)
 {
 	args = parse_file_in(&size, args, pipex);
 	parse_file_out(&size, args, pipex);
-	pipex->commands = parse_commands(size, args);
+	if (!check_file_access(pipex->file_in, pipex->file_out))
+		exit(pipex_clear(pipex, 4));
+	pipex->commands = parse_commands(size, args, pipex->env);
 	if (!pipex->commands)
 		exit(error_input(pipex_clear(pipex, -1)));
 }

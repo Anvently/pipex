@@ -13,3 +13,17 @@ PARSING
 
 ISSUES
 	For bonus part, -a flag is not required when here_doc is given.
+	~ char not handled on path
+
+CASES
+	- if no access to in_file
+		- 1st command IS NOT EXECUTED
+	- if no access to out_file
+		- last command is NOT EXECUTED
+	- every command in betweem is executed
+	*** < file1 > file2 ***
+		Means that empty command are accepted.
+
+LATER FOR MINISHELL
+	Check
+		< file1 | > file3 |  > file2
