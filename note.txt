@@ -12,18 +12,31 @@ PARSING
 
 
 ISSUES
-	For bonus part, -a flag is not required when here_doc is given.
-	~ char not handled on path
+	-	For bonus part, -a flag is not required when here_doc is given.
+	-	~ char not handled on path
+	-	'.' as a command is accepted. What does that mean ?
+		-	May need to check if path is a file and not a directory
 
 CASES
-	- if no access to in_file
+	-	if no access to in_file
 		- 1st command IS NOT EXECUTED
-	- if no access to out_file
+	-	if no access to out_file
 		- last command is NOT EXECUTED
-	- every command in betweem is executed
+	-	every command in betweem is executed
 	*** < file1 > file2 ***
 		Means that empty command are accepted.
+	-	For each pipe, the stdin is redirected
+		-	As long as a correct pipe is given.
+			- if no pipe is given, command will have empty empty input
+	-	For each pipe, stdout is redirected
+		-	If the command is correct
+			- If command is invalid, no pipe will be given to ```stdout```.
+			- but command will still be executed
+
 
 LATER FOR MINISHELL
 	Check
 		< file1 | > file3 |  > file2
+
+
+/home/npirard/bin:/home/npirard/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin

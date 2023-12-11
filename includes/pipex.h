@@ -6,7 +6,7 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:47:14 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:39:10 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/11 13:44:16 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_pipex
 	char	*file_in;
 	char	*file_out;
 	bool	flag_a;
+	int		nbr_commands;
 	char	*limiter;
 	char	***commands;
 	char	**env;
@@ -66,7 +67,6 @@ t_pipex	*parse_input(int argc, char **argv, char **env);
 
 char	**command_build(char *input, char **env);
 char	*command_find_path(char *command, char **env);
-void	*commands_free(char ***commands);
 
 /* ------------------------------- PATH CHECK ------------------------------- */
 

@@ -1,8 +1,9 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <libft.h>
 #include <sys/wait.h>
 
-int	main(void)
+/* int	main(void)
 {
 	char buffer[100000] = {0};
 	char buffer2[100000] = {1};
@@ -29,5 +30,24 @@ int	main(void)
 	waitpid(id, NULL, 0);
 	printf("test\n");
 	wait(NULL);
+	return (0);
+} */
+
+char	**test(char **strs)
+{
+	int i;
+
+	i = 0;
+	while (*strs)
+		if(*strs++)
+			i++;
+	return (strs);
+}
+
+int	main(void)
+{
+	char	**strs = ft_split("Ceci est un test", ' ');
+	test(strs);
+	ft_free_strs(strs);
 	return (0);
 }

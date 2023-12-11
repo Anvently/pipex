@@ -6,7 +6,7 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:46:25 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/08 14:42:46 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/11 18:56:52 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 /// @brief
 /// @param error
 /// @return
+/// @note ```1``` unsufficient number of args.
+/// @note ```2``` append flag given without file.
+/// @note ```3``` no PATH variable in env.
 /// @note ```4``` access error.
 int	error_input(int error)
 {

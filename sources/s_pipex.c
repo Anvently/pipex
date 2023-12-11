@@ -6,7 +6,7 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:15:18 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/08 11:21:03 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/11 15:27:48 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_pipex	*pipex_init(void)
 	pipex->env = NULL;
 	pipex->file_in = NULL;
 	pipex->file_out = NULL;
+	pipex->nbr_commands = 0;
 	pipex->flag_a = false;
 	pipex->limiter = NULL;
 	return (pipex);
