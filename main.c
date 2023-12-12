@@ -33,7 +33,7 @@
 	return (0);
 } */
 
-char	**test(char **strs)
+/* char	**test(char **strs)
 {
 	int i;
 
@@ -42,12 +42,10 @@ char	**test(char **strs)
 		if(*strs++)
 			i++;
 	return (strs);
-}
+} */
 
 int	main(void)
 {
-	char	**strs = ft_split("Ceci est un test", ' ');
-	test(strs);
-	ft_free_strs(strs);
+	facces
 	return (0);
 }

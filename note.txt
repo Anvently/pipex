@@ -16,6 +16,7 @@ ISSUES
 	-	~ char not handled on path
 	-	'.' as a command is accepted. What does that mean ?
 		-	May need to check if path is a file and not a directory
+		-	Need to use open for that.
 
 CASES
 	-	if no access to in_file
@@ -31,12 +32,48 @@ CASES
 	-	For each pipe, stdout is redirected
 		-	If the command is correct
 			- If command is invalid, no pipe will be given to ```stdout```.
-			- but command will still be executed
+	- If no access to in_file, 1st command is NOT executed
+		- AND first stdout is empty.
+	- If no access to out_file, last command is NOT executed
+	-	What happen if in or out are std ?
 
 
 LATER FOR MINISHELL
 	Check
 		< file1 | > file3 |  > file2
+		Seems equivalent to
+			echo 458 > file2 > file2.
+				-	All fd are dup then equals the same.
+		!!!! DEPEND ON THE TERMINAL USED !!!!!
 
 
 /home/npirard/bin:/home/npirard/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+https://unix.stackexchange.com/questions/222333/behaviour-of-pipe-in-linux-with-output-redirection
+
+valgrind -s --log-file="loglog" --leak-check=full  --track-fds=yes --trace-children=yes ./pipex "in" "cat -e" "wc -c" "out"
+
+
+for each command :
+
+
+- fork
+- create pipe
+for child =>
+	- if !old_fd && first_command
+		- if check file_in
+			- dup std_in to file_in
+		- else
+			- next_command
+	- else
+		- dup stdin to old_fd[1]
+	- if last command
+		- if check file_out
+			- dup stdout to file_out
+	- else
+		- dup stdout to fd[1]
+	- if (!exec command)
+		- close old_fd[1] ?
+		- exit
+for parent =>
+	- next_command(fd)
+
