@@ -59,6 +59,11 @@ for each command :
 - fork
 - create pipe
 for child =>
+	- if last command
+		- if check file_out
+			- dup stdout to file_out
+	- else
+		- dup stdout to fd[1]
 	- if !old_fd && first_command
 		- if check file_in
 			- dup std_in to file_in
@@ -66,11 +71,6 @@ for child =>
 			- next_command
 	- else
 		- dup stdin to old_fd[1]
-	- if last command
-		- if check file_out
-			- dup stdout to file_out
-	- else
-		- dup stdout to fd[1]
 	- if (!exec command)
 		- close old_fd[1] ?
 		- exit
