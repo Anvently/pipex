@@ -6,11 +6,12 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 18:25:14 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/11 15:18:18 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 11:15:55 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
+#include <libft.h>
 
 /// @brief Parse given command spliting its name (looking for
 /// a path if necessary) and its arguments.

@@ -6,12 +6,13 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 09:49:17 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/08 15:00:12 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 15:27:33 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 #include <unistd.h>
+#include <libft.h>
 
 /// @brief Check for read access to ```file_in``` and write access to
 /// ```file_out```. ```stdin``` and ```stdout``` (```NULL```) are ignored.
@@ -27,7 +28,7 @@ bool	check_file_access(char *file_in, char *file_out)
 			return (false);
 		if (access(file_in, R_OK) != 0)
 		{
-			error_path("Permission denied: ", file_in);
+			error_path("Permission denied", file_in);
 			return (false);
 		}
 	}
@@ -35,7 +36,7 @@ bool	check_file_access(char *file_in, char *file_out)
 	{
 		if (path_exist(file_out, false) && access(file_out, W_OK) != 0)
 		{
-			error_path("Permission denied: ", file_out);
+			error_path("Permission denied", file_out);
 			return (false);
 		}
 	}
@@ -58,7 +59,7 @@ bool	path_exist(char *path, bool printerr)
 	if (access(path, F_OK) == 0)
 		return (true);
 	if (printerr)
-		error_path("No such file or directory: ", path);
+		error_path("No such file or directory", path);
 	return (false);
 }
 
@@ -67,6 +68,6 @@ bool	path_is_exec(char *path, bool printerr)
 	if (access(path, X_OK) == 0)
 		return (true);
 	if (printerr)
-		error_path("Permission denied: ", path);
+		error_path("Permission denied", path);
 	return (false);
 }

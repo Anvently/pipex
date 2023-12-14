@@ -14,9 +14,6 @@ PARSING
 ISSUES
 	-	For bonus part, -a flag is not required when here_doc is given.
 	-	~ char not handled on path
-	-	'.' as a command is accepted. What does that mean ?
-		-	May need to check if path is a file and not a directory
-		-	Need to use open for that.
 
 CASES
 	-	if no access to in_file

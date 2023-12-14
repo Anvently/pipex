@@ -6,16 +6,17 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:47:14 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/11 13:44:16 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 18:00:17 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# define MIN_NARG 3
+# include <stdbool.h>
 
-# include <libft.h>
+# define MIN_NARG 3
+# define HERE_DOC_TMP_PATH "/tmp/pipex_tmp"
 
 /// @brief
 /// @param file_in File to take input from. If ```NULL``` input will
@@ -35,7 +36,6 @@ typedef struct s_pipex
 	char	*file_in;
 	char	*file_out;
 	bool	flag_a;
-	int		nbr_commands;
 	char	*limiter;
 	char	***commands;
 	char	**env;
@@ -47,6 +47,7 @@ typedef struct s_pipex
 
 t_pipex	*pipex_init(void);
 int		pipex_clear(t_pipex *pipex, int error);
+void	print_pipex(t_pipex *pipex);
 
 /* -------------------------------------------------------------------------- */
 /*                                    ERROR                                   */
@@ -56,6 +57,7 @@ int		error(char *error_msg, int error);
 int		error_path(char *msg, char *path);
 int		error_input(int error);
 int		error_alloc(void);
+int		error_close(int fd, int error);
 
 /* -------------------------------------------------------------------------- */
 /*                                   PARSING                                  */
@@ -75,5 +77,13 @@ bool	path_exist(char *path, bool printerr);
 bool	path_is_exec(char *path, bool printerr);
 bool	check_file_access(char *file_in, char *file_out);
 
+/* -------------------------------- PIPEX -------------------------------- */
+
+int		exec_cmds(t_pipex *pipex, char **env, int *old_fd, int i_cmd);
+int		here_doc(char *limiter);
+
+/* ------------------------------- PIPEX_UTILS ------------------------------ */
+
+int		fd_to_fd(int fd_in, int fd_out);
 
 #endif

@@ -5,7 +5,8 @@ INCLUDES	=	includes/
 SRCS_FOLDER	=	sources/
 OBJS_FOLDER	=	objects/
 
-SRCS_FILES	=	pipex.c parsing.c error.c s_pipex.c command.c path_check.c path.c
+SRCS_FILES	=	pipex.c parsing.c error.c s_pipex.c command.c path_check.c path.c \
+				here_doc.c pipex_util.c main.c
 
 OBJS		=	$(addprefix $(OBJS_FOLDER),$(SRCS_FILES:.c=.o))
 SRCS		=	$(addprefix $(SRCS_FOLDER),$(SRCS_FILES))

@@ -6,12 +6,12 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 10:33:36 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/11 18:47:29 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 15:27:04 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
-#include <unistd.h>
+#include <libft.h>
 
 /// @brief Allocate and return the concatenation of path and command, adding a
 /// '/' in between.
@@ -70,7 +70,7 @@ static char	*build_path(char *command, char **path_strs)
 		free(path);
 	}
 	if (!*path_strs)
-		error_path("Command not found: ", command);
+		error_path("Command not found", command);
 	path = ft_strdup("");
 	if (!path)
 		return (alloc_error());

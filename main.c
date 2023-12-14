@@ -1,6 +1,5 @@
 #include <unistd.h>
 #include <stdio.h>
-#include <libft.h>
 #include <sys/wait.h>
 
 /* int	main(void)
@@ -44,8 +43,26 @@
 	return (strs);
 } */
 
+void print_bits(unsigned char octet)
+{
+	int	i = 8;
+	unsigned char 	bit;
+
+	while (i--)
+	{
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
+	}
+}
+
 int	main(void)
 {
-	facces
+	int byte;
+	int	bit;
+
+	byte = 256;
+	bit = '0' + (3 & 1);
+	print_bits((unsigned char) byte);
+	//write(1, &bit, 1);
 	return (0);
 }

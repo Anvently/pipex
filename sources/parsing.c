@@ -6,11 +6,12 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:46:33 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/13 09:14:28 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 11:14:51 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
+#include <libft.h>
 
 /// @brief Retrive given command in argv with the provided numbr of
 /// commands.

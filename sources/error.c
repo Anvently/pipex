@@ -6,12 +6,14 @@
 /*   By: npirard <npirard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 15:46:25 by npirard           #+#    #+#             */
-/*   Updated: 2023/12/13 13:53:13 by npirard          ###   ########.fr       */
+/*   Updated: 2023/12/14 15:26:02 by npirard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pipex.h>
 #include <errno.h>
+#include <libft.h>
+#include <string.h>
 
 /// @brief
 /// @param error
@@ -34,6 +36,7 @@ int	error_input(int error)
 int	error_path(char *msg, char *path)
 {
 	ft_putstr_fd(msg, 2);
+	ft_putstr_fd(": ", 2);
 	ft_putendl_fd(path, 2);
 	return (1);
 }
@@ -46,6 +49,18 @@ int	error_alloc(void)
 
 int	error(char *error_msg, int error)
 {
-	perror(error_msg);
+	ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(error_msg, 2);
+	return (error);
+}
+
+/// @brief Close given fd and return error.
+/// @param fd
+/// @param error
+/// @return error
+int	error_close(int fd, int error)
+{
+	close(fd);
 	return (error);
 }
